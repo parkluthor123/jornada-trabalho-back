@@ -31,11 +31,10 @@ const express_1 = __importStar(require("express"));
 const app = (0, express_1.default)();
 const api_1 = __importDefault(require("./routes/api"));
 const cors_1 = __importDefault(require("cors"));
-const PORT = process.env.PORT || 3333;
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use((0, express_1.urlencoded)({ extended: true }));
 app.use('/api', api_1.default);
-app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(3333, () => {
+    console.log(`Server is running on port 3333`);
 });
