@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../src/database/configs.sqlite"
+}
+
+model Config {
+  id           Int      @id @default(autoincrement())
+  is_active    Boolean  @default(false)
+  next_workday String
+  created_at   DateTime @default(now())
+  DaysWeek     DaysWeek[]
+  @@map("configs")
+}
+
+model DaysWeek {
+  id           Int      @id @default(autoincrement())
+  day          String
+  initial_date DateTime
+  final_date   DateTime
+  created_at   DateTime @default(now())
+  Config       Config   @relation(fields: [id_config], references: [id])
+  id_config    Int
+  @@map("days_weeks")
+}
